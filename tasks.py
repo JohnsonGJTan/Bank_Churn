@@ -12,7 +12,7 @@ def clean(c):
     # Reset notebooks
     c.run("jupyter nbconvert --clear-output --inplace notebooks/0.data_exploration.ipynb")
     c.run("jupyter nbconvert --clear-output --inplace notebooks/1.churn_predict_binary.ipynb")
-    c.run("jupyter nbconvert --clear-output --inplace notebooks/2.high_value_segment.ipynb")
+    c.run("jupyter nbconvert --clear-output --inplace notebooks/2.high_value_segments.ipynb")
 
 @task
 def build_data(c):
