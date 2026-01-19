@@ -23,7 +23,10 @@ The primary goal of this analytics project is to find segments which contain hig
 ## Key Metrics
 
 We say that a subset of the population is high value if there is a higher concentration of churned balance relative to customer count. Specifically we will be looking at the ratio 
-$$\text{Value of group} = \frac{\text{Percent of churned balance attributed to the group}}{\text{Percent of population from the group}}$$
+
+$$
+\text{Value of group} = \frac{\text{Percent of churned balance attributed to the group}}{\text{Percent of population from the group}}
+$$
 
 A high value segment, say value > 2, indicates that one would recover at least twice the amount of churned balance when targeting that segment compared to a random selection of customers of the same size. In particular our goal is to find segments of the population which are of high value with high precision.
 
@@ -53,3 +56,33 @@ Another criteria to look for is the churn rate of these groups as higher churn r
 - [Data Quality and Exploratory Data Analysis](notebooks/0.data_exploration.ipynb) - Data quality checks, univariate/bivariate analysis, multicollinearity assessment
 - [Customer Churn Prediction Model](notebooks/1.churn_predict_binary.ipynb) - Model development workflow
 - [Customer Segment Value Analysis](notebooks/2.high_value_segments.ipynb) - Rule-based segmentation, predictive model evaluation using threshold analysis
+
+## Installation
+
+1. Clone the repository:
+```
+git clone https://github.com/JohnsonGJTan/Bank_Churn.git
+cd Bank_Churn
+```
+2. Install dependencies and src:
+```
+pip install -r requirements.txt
+pip install -e .
+```
+## Usage
+
+**Initial Setup**
+
+0. Set kaggle credentials (see .env.example for template).
+1. Run `Invoke Reproduce` in project root to reproduce results.
+
+**Running Scripts**
+
+| Task | Command |
+|------|---------|
+| Data preparation | `invoke build-data` |
+| Run EDA notebook | `invoke run-data-nb` |
+| Run model development notebook | `invoke run-model-nb` |
+| Build predictive model pipeline | `invoke build-pipeline` |
+| Run customer value analysis notebook | `invoke run-value-nb` |
+| Reset project directory | `invoke clean` |
