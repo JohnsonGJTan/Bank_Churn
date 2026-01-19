@@ -23,7 +23,7 @@ The primary goal of this analytics project is to find segments which contain hig
 ## Key Metrics
 
 We say that a subset of the population is high value if there is a higher concentration of churned balance relative to customer count. Specifically we will be looking at the ratio 
-$$\text{Value of group} = \text{\% of churned balance attributed to the group}/\text{\% of population from the group}$$
+$$\text{Value of group} = \frac{\text{Percent of churned balance attributed to the group}}{\text{Percent of population from the group}}$$
 
 A high value segment, say value > 2, indicates that one would recover at least twice the amount of churned balance when targeting that segment compared to a random selection of customers of the same size. In particular our goal is to find segments of the population which are of high value with high precision.
 
