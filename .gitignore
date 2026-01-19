@@ -59,8 +59,6 @@ data/raw/*
 !data/raw/.gitkeep
 data/clean/*
 !data/clean/.gitkeep
-data/dictionaries/*
-!data/dictionaries/.gitkeep
 
 # Model files (too large for git, use DVC or MLflow)
 pipelines/*
