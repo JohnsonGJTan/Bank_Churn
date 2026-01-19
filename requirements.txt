@@ -1,0 +1,17 @@
+invoke==2.2.1
+joblib==1.5.3
+jupyter_client==8.7.0
+jupyter_core==5.9.1
+jupyterlab_pygments==0.3.0
+jupyterlab_widgets==3.0.16
+matplotlib==3.10.8
+matplotlib-inline==0.2.1
+missingno==0.5.2
+numpy==2.4.0
+pandas==2.3.3
+python-dotenv==1.2.1
+scikit-learn==1.8.0
+scipy==1.16.3
+seaborn==0.13.2
+statsmodels==0.14.6
+xgboost==3.1.3
