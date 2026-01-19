@@ -12,7 +12,7 @@ The primary goal of this analytics project is to find segments which contain hig
 
 - **Source**: [Kaggle dataset 'mathchi/churn-for-bank-customers'](https://www.kaggle.com/datasets/mathchi/churn-for-bank-customers)
 - **Size**: 10,000 unique customer records
-- **Features**: See [here](data/dictionaries/data_dictionary.md) for full feature descriptions
+- **Features**: See [here](data/dictionaries/feature_dictionary.md) for full feature descriptions
     - Customer identifiers (3): RowNumber, CustomerId, Surname
     - Demographic (3): Geography, Gender, Age
     - Account info (4): Tenure, Balance, NumOfProducts, HasCrCard, IsActiveMember
