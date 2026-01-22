@@ -49,7 +49,7 @@ processor = ColumnTransformer(
     [
         (
             'OHEnc', 
-            OneHotEncoder(dtype='int', sparse_output=False, drop='first'),
+            OneHotEncoder(dtype='int', sparse_output=False, handle_unknown='ignore'),
             ['Geography', 'Gender']
         )
     ],
