@@ -39,7 +39,7 @@ def run_value_nb(c):
     print("Running customer value nb")
     c.run("jupyter nbconvert --to notebook --execute --inplace notebooks/2.high_value_segments.ipynb")
 
-@task(pre=[clean, run_data_nb, run_model_nb, run_value_nb])
+@task(post=[clean, run_data_nb, run_model_nb, run_value_nb])
 def reproduce(c):
     print("Reproducing workspace")
     
