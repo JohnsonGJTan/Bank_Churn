@@ -6,7 +6,11 @@ Customer churn occurs when customers stop doing business with a company. In the 
 
 ## Project Goals
 
-The primary goal of this analytics project is to find segments which contain high value churners which are cost effective for targeted retention strategies. To do this we will look at both rule-based approach as well as a predictive model approach to finding high value segments of the customer base with high churn rates.
+- Find segments of the customer base which contain high value churners which are cost effective for targeted retention strategies using a simple rule-based approach.
+- Develop a predictive model for identifying the churn risk per customer.
+    - Evaluate developed model's effectiveness at stratifying the population into high value segments.
+    - Implement an API endpoint for serving single customer churn predictions as well as batch predictions.
+    - Implement an interactive application for churn predictions with explainable visualizations.
 
 ## Data Description
 
@@ -57,26 +61,78 @@ Another criteria to look for is the churn rate of these groups as higher churn r
 - [Customer Churn Prediction Model](notebooks/1.churn_predict_binary.ipynb) - Model development workflow
 - [Customer Segment Value Analysis](notebooks/2.high_value_segments.ipynb) - Rule-based segmentation, predictive model evaluation using threshold analysis
 
-## Installation
+## Installation and Setup
 
 1. Clone the repository:
-```
+```bash
 git clone https://github.com/JohnsonGJTan/Bank_Churn.git
 cd Bank_Churn
 ```
 2. Install dependencies and src:
-```
+```bash
 pip install -r requirements.txt
 pip install -e .
 ```
+3. Set Kaggle credentials (see .env.example for template).
+```bash
+# Example Environment Variables
+# Copy this file to .env and fill in your actual values
+
+KAGGLE_USERNAME=your_username_here
+KAGGLE_KEY=your_api_key_here
+```
+4. Run `invoke reproduce` in project root to reproduce results.
+
 ## Usage
 
-**Initial Setup**
+### API
 
-0. Set kaggle credentials (see .env.example for template).
-1. Run `Invoke Reproduce` in project root to reproduce results.
+1. Start the API server
+```bash
+invoke start-api  # Runs at http://127.0.0.1:8000
+```
+**Endpoints:**
+- `GET /` - Health check
+- `POST /predict` - Single customer prediction
+- `POST /predict-batch` - Batch predictions
 
-**Running Scripts**
+**Example Request:**
+```python
+import requests
+
+payload = {
+    "CreditScore": 650,
+    "Geography": "France",
+    "Gender": "Female",
+    "Age": 42,
+    "Tenure": 5,
+    "Balance": 80000.0,
+    "NumOfProducts": 2,
+    "HasCrCard": 1,
+    "IsActiveMember": 1,
+    "EstimatedSalary": 75000.0,
+    "compute_shap": True
+}
+
+response = requests.post("http://127.0.0.1:8000/predict", json=payload)
+result = response.json()
+# Returns: {"churn_prediction": 0, "churn_probability": 0.23, "shap_values": {...}}
+```
+
+### Application
+
+Streamlit dashboard for interactive churn prediction with explainable AI visualizations.
+
+**Start App:**
+```bash
+invoke start-streamlit  # Runs at http://localhost:8501
+invoke start-all        # Start both API and app together
+```
+**Images**
+![single-prediction](assets/images/streamlit-app.png)
+![batch-prediction](assets/images/steamlit-app-batch.png)
+
+### Running Scripts
 
 | Task | Command |
 |------|---------|
@@ -86,3 +142,7 @@ pip install -e .
 | Build predictive model pipeline | `invoke build-pipeline` |
 | Run customer value analysis notebook | `invoke run-value-nb` |
 | Reset project directory | `invoke clean` |
+| Start API for model prediction | `invoke start-api` |
+| Start streamlit app | `invoke start-streamlit` |
+| Start API and app | `invoke start-all` |
+| Kill API and app | `invoke stop-all` |
